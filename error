@@ -1,0 +1,193 @@
+i want to implement a clear flow like this:
+
+**New User Flow**:
+2. Login
+3. Show wallet setup options (create/import)
+4. If "Create New Wallet":
+   - Set passcode
+   - Verify passcode
+   - Generate mnemonic
+   - Verify mnemonic words
+   - Create wallet
+   - Open wallet view
+5. If "Import Wallet":
+   - Set passcode
+   - Verify passcode
+   - Enter mnemonic
+   - Verify mnemonic
+   - Import wallet
+   - Open wallet view
+
+**Existing User with Wallet Flow**:
+1. Login
+2. Enter passcode
+3. Direct to wallet view
+
+Let me help modify the code to implement this flow. First, let's modify the login view to handle both cases: 
+```
+
+
+Made changes.
+
+
+```
+Summarized conversation historyI understand you want to implement the following flows:
+
+1. New User Flow (no wallet):
+   - User registers/logs in
+   - Shows options: Create New Wallet or Import Wallet
+   - For both options:
+     a. Set passcode
+     b. Verify passcode
+   - Then for Create New Wallet:
+     c. Generate mnemonic
+     d. Verify mnemonic words
+     e. Open wallet view
+   - Or for Import Wallet:
+     c. Enter mnemonic
+     d. Verify mnemonic
+     e. Open wallet view
+
+2. Existing User Flow (has wallet):
+   - User logs in
+   - Verify passcode
+   - Direct to wallet view
+
+Let me check the current code and make the necessary changes to implement this flow. 
+
+Let me continue reading the rest of the file to understand the current implementation. Let me read more of the file to understand the wallet creation and import logic. 
+
+I understand the current implementation and what needs to be modified. I'll make the following changes:
+
+1. First, let's update the CreateWalletView to implement the proper flow with passcode verification: 
+```
+
+
+
+  // const handlePasscodeSetup = async () => {
+  //   if (passcode !== confirmPasscode) {
+  //     setError("Passcodes do not match");
+  //     showToast.error("Passcodes do not match");
+  //     return;
+  //   }
+  //   setIsLoading(true);
+  //   try {
+  //     const success = await setupPasscode(passcode, confirmPasscode);
+  //     if (success) {
+  //       setCurrentScreen("landing");
+  //     } else {
+  //       setError("Failed to setup passcode");
+  //     }
+  //   } catch (error) {
+  //     setError("An error occurred during passcode setup");
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
+
+  // const handlePasscodeVerification = async () => {
+  //   setIsLoading(true);
+  //   try {
+  //     const success = await verifyPasscode(passcode);
+  //     if (success) {
+  //       setCurrentScreen("wallet-home");
+  //     } else {
+  //       setError("Invalid passcode");
+  //     }
+  //   } catch (error) {
+  //     setError("An error occurred during passcode verification");
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
+
+  // const handleCreateWallet = async () => {
+  //   setIsLoading(true);
+  //   try {
+  //     const success = await setupWallet({
+  //       wallet_name: walletName,
+  //       wallet_password: walletPassword,
+  //       mnemonic,
+  //       verification: {
+  //         word_positions: verificationWords.positions,
+  //         word_answers: verificationWords.answers
+  //       }
+  //     });
+  //     if (success) {
+  //       navigate('/dashboard');
+  //     } else {
+  //       setError("Failed to create wallet");
+  //     }
+  //   } catch (error) {
+  //     setError("An error occurred during wallet creation");
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
+
+
+
+
+//   {/* Bottom Navigation */}
+//   <div className="fixed bottom-0 left-0 right-0 bg-gray-900 border-t border-gray-700">
+//     <div className="flex items-center justify-around py-4">
+//       {/* Send */}
+//       <div className="text-center">
+//         <button 
+//           className="flex flex-col items-center gap-2"
+//           onClick={handleSendClick}
+//         >
+//           <div className="w-10 h-10 flex items-center justify-center border border-gray-600 rounded-lg p-1">
+//             <ArrowUp className="h-5 w-5 text-gray-400" />
+//           </div>
+//           <span className="text-xs text-gray-400">Send</span>
+//         </button>
+//       </div>
+      
+//       {/* Receive */}
+//       <div className="text-center">
+//         <button 
+//           className="flex flex-col items-center gap-2"
+//           onClick={() => setCurrentScreenLocal("receive")}
+//         >
+//           <div className="w-10 h-10 flex items-center justify-center border border-gray-600 rounded-lg p-1">
+//             <Copy className="h-5 w-5 text-gray-400" />
+//           </div>
+//           <span className="text-xs text-gray-400">Receive</span>
+//         </button>
+//       </div>
+      
+//       {/* Swap */}
+//       <div className="text-center">
+//         <button className="flex flex-col items-center gap-2">
+//           <div className="w-8 h-8 flex items-center justify-center border border-gray-600 rounded-lg p-5 hover:border-gray-400">
+//             <span className="text-gray-400">⇄</span>
+//           </div>
+//           <span className="text-xs text-gray-400">Swap</span>
+//         </button>
+//       </div>
+      
+//       {/* Buy */}
+//       <div className="text-center">
+//         <button 
+//           className="flex flex-col items-center gap-2"
+//           onClick={() => setCurrentScreenLocal("buy")}
+//         >
+//           <div className="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center">
+//             <Zap className="h-4 w-4 text-white" />
+//           </div>
+//           <span className="text-xs text-white font-medium">Buy</span>
+//         </button>
+//       </div>
+      
+//       {/* Sell */}
+//       <div className="text-center">
+//         <button className="flex flex-col items-center gap-2">
+//           <div className="w-10 h-10 flex items-center justify-center border border-gray-600 rounded-lg p-1">
+//             <Building className="h-5 w-5 text-gray-400" />
+//           </div>
+//           <span className="text-xs text-gray-400">Sell</span>
+//         </button>
+//       </div>
+//     </div>
+//   </div>
