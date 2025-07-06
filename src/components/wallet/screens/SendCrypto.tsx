@@ -6,7 +6,7 @@ interface SendCryptoProps {
   transactions: Transaction[];
   setCurrentScreen: (screen: Screen) => void;
 }
-
+// for scanner
 const SendCrypto: React.FC<SendCryptoProps> = ({ transactions, setCurrentScreen }) => {
   const [address, setAddress] = useState('');
   const [amount, setAmount] = useState('');
