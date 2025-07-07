@@ -10,7 +10,7 @@ import { ProtectedRoute } from "./context/auth/ProtectedRoute"
 
 export default function App() {
   return (
-    <Router>
+     <Router basename={process.env.PUBLIC_URL || '/'}>
       <AuthProvider>
         <Routes>
           <Route path="/" element={<LandingPage />} />
